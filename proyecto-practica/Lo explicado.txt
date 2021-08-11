@@ -1,0 +1,11 @@
+
+//*  SENTENCIA PARA PERMISOS DEPENDIENDO ROL DEL USUARIOS 
+$base=new PDO("mysql:host=localhost; dbname=pruebas" , "root", "");
+$base->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+$sql="SELECT  roles.id 
+FROM usuarios_pass JOIN roles_usuarios ON (usuarios_pass.ID = roles_usuarios.`idusuario`)
+JOIN roles ON (roles.id = roles_usuarios.`idrol`)
+WHERE usuarios_pass.ID = $_SESSION["idusuario"]";
+$resultado=$base->prepare($sql);
+//FINALIZACION 
